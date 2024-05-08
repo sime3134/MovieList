@@ -15,14 +15,25 @@ export default function MovieForm({ addMovie, boxProps }) {
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState({});
 
+  /**
+   * Function for handling the rating change
+   */
   const handleRatingChange = (event) => {
     setRating(event.target.value);
   };
 
+  /**
+   * Function for handling the title change
+   */
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
+  /**
+   * Function for validating the movie object (user input)
+   * @param {Object} movie
+   * @returns {Boolean} if the movie is valid or not
+   */
   const validateMovie = (movie) => {
     let errors = {};
     let isValid = true;
@@ -40,12 +51,15 @@ export default function MovieForm({ addMovie, boxProps }) {
     setErrors(errors);
 
     if (!isValid) {
-      alert("Fel i formuläret");
+      alert("Något är fel i formuläret. Kontrollera fälten och försök igen.");
     }
 
     return isValid;
   };
 
+  /**
+   *  Function for handling the form submit
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
     const title = event.target.titleField.value;

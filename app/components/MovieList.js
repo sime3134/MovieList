@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import Movie from "./Movie";
 
 export default function MovieList({ movies, removeMovie }) {
   return (
@@ -6,13 +7,10 @@ export default function MovieList({ movies, removeMovie }) {
       <Typography variant="h5" gutterBottom>
         Inlagda filmer
       </Typography>
+      {movies.length === 0 && <Typography>Inga filmer inlagda än.</Typography>}
       <Box>
         {movies.map((movie) => (
-          <Box key={movie.id} display="flex" alignItems="center">
-            <Typography>{movie.title}</Typography>
-            <Typography ml={2}>{movie.rating}</Typography>
-            <button onClick={() => removeMovie(movie.id)}>Ta bort</button>
-          </Box>
+          <Movie key={movie.id} movie={movie} removeMovie={removeMovie} />
         ))}
       </Box>
     </Box>
